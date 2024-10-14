@@ -1,0 +1,21 @@
+class ClickB extends React.Component {
+    constructor(props) {
+    super(props);
+    this.state = { clicked: false };
+    this.handleClick = this.handleClick.bind(this);
+    }
+    handleClick() {
+    this.setState({ clicked: true });
+    }
+    render() {
+    return (
+    <div>
+    <button  onClick={this.handleClick}>Click me!</button>
+    <h1 style={{color: "red"}}>
+    {this.state.clicked ? 'Clicked' : ''}
+    </h1>
+    </div>
+    );
+    }
+   } 
+  export default ClickB;
