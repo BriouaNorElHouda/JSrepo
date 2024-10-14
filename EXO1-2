@@ -1,0 +1,32 @@
+ import "./App.css";
+import React, { useState } from "react";
+
+function TabGroup() {
+  const [active, setActive] = useState(types[0]);
+  return (
+    <>
+      <div>
+        {types.map((type) => (
+          <button
+            key={type}
+            active={active === type}
+            onClick={() => setActive(type)}
+          >
+           Button {type}
+          </button>
+        ))}
+      </div>
+      <p />
+      <p> The Button {active} was clicked</p>
+    </>
+  );
+}
+
+const types = ["1", "2", "3"];
+export default function App() {
+  return (
+    <>
+      <TabGroup />
+    </>
+  );
+}
