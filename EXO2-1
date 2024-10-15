@@ -1,0 +1,13 @@
+class DisplayTab extends React.Component {
+  render() {
+    let tab = ['Hello','World','from','react'];
+   let DisplayTab = tab.map ((e) =>
+  <li> {e} </li> );
+  return(
+  <>
+  <ul>
+  {DisplayTab}
+  </ul>
+  </>)
+  } }
+export default DisplayTab;
