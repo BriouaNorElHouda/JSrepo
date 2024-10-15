@@ -1,0 +1,29 @@
+function EXO3() {
+  const [active, setActive] = useState(elems[0]);
+  return (
+    <>
+      <div>
+        {elems.map((elem) => (
+          <button
+            key={elem}
+            active={active === elem}
+            onClick={() => setActive(elem)}
+          >
+           Button {elem}
+          </button>
+        ))}
+      </div>
+      <p />
+      <p> The Button {active} was clicked</p>
+    </>
+  );
+}
+
+const elems = ["1", "2", "3"];
+export default function App() {
+  return (
+    <>
+      <EXO3 />
+    </>
+  );
+}
