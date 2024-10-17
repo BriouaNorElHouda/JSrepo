@@ -1,0 +1,27 @@
+ import {useState} from 'react';
+
+function Random ()  {
+  const [num, setNum] = useState(0);
+  var maxNum = 10;
+
+  function randNum() {
+    return Math.floor(Math.random() * maxNum +1);
+   
+  }
+  
+  const handleClick = () => {
+    setNum(randNum(0,10));
+  };
+
+  return (
+    <>
+      <h1>number is: {num}</h1>
+      <button style={{color: "#00CED1"}} onClick={handleClick}> Generate Random</button>
+      <h1 style={{color: "#00CED1"}}> {num===maxNum? ' 🎉🎊You Win🎊🎉' : ''} </h1>
+      <button style={{color: "#00CED1"}}onClick={handleClick}> {num!==maxNum? '😭You lose, try again😭' : ''} </button>
+      
+    </>
+  );
+};
+
+export default Random;
