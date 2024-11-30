@@ -37,3 +37,25 @@ let n = null;
 let strN = String(n);
 console.log(`${typeof n} : ${n}`); // -> object : null
 console.log(`${typeof strN} : ${strN}`); // -> string : null
+
+// 888888888888888888888
+let n1 = 10;
+let n2 = 10;
+
+console.log(n1); // -> 10
+console.log(n1++); // -> 10
+console.log(n1); // -> 11
+
+console.log(n2); // -> 10
+console.log(++n2); // -> 11
+console.log(n2); // -> 11
+
+let n3 = 20;
+//  SECTION 4
+
+
+let isUserReady = confirm("Are you ready?");
+console.log(isUserReady);
+if (isUserReady) {
+    alert("User ready!");
+}
