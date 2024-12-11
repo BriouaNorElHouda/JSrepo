@@ -38,7 +38,7 @@ let strN = String(n);
 console.log(`${typeof n} : ${n}`); // -> object : null
 console.log(`${typeof strN} : ${strN}`); // -> string : null
 
-// 888888888888888888888
+// _____________________
 let n1 = 10;
 let n2 = 10;
 
