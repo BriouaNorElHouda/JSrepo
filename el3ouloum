@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Table</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dynamic Table</h1>
+  <table id="dynamicTable">
+    <thead>
+      <tr>
+        <th>Article</th>
+        <th>Designation</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Rows will be dynamically added here -->
+    </tbody>
+  </table>
+  <button id="addRow">Add Row</button>
+
+  <script>
+    // Sample data for articles
+    const articles = [
+      { ref: 'A001', designation: 'Item 1', unitPrice: 10 },
+      { ref: 'A002', designation: 'Item 2', unitPrice: 20 },
+      { ref: 'A003', designation: 'Item 3', unitPrice: 30 },
+    ];
+
+    const tableBody = document.querySelector('#dynamicTable tbody');
+
+    // Function to create a new row
+    function createRow() {
+      const row = document.createElement('tr');
+
+      // Article dropdown
+      const articleCell = document.createElement('td');
+      const articleSelect = document.createElement('select');
+      articleSelect.innerHTML = `<option value="">Select Article</option>` +
+        articles.map(article => `<option value="${article.ref}">${article.ref}</option>`).join('');
+      articleSelect.addEventListener('change', handleArticleChange);
+      articleCell.appendChild(articleSelect);
+      row.appendChild(articleCell);
+
+      // Designation
+      const designationCell = document.createElement('td');
+      designationCell.textContent = '-';
+      row.appendChild(designationCell);
+
+      // Unit Price
+      const unitPriceCell = document.createElement('td');
+      unitPriceCell.textContent = '-';
+      row.appendChild(unitPriceCell);
+
+      // Quantity dropdown
+      const quantityCell = document.createElement('td');
+      const quantitySelect = document.createElement('select');
+      quantitySelect.innerHTML = `<option value="">Select Quantity</option>` +
+        Array.from({ length: 100 }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join('');
+      quantitySelect.addEventListener('change', () => calculateTotal(row));
+      quantityCell.appendChild(quantitySelect);
+      row.appendChild(quantityCell);
+
+      // Total
+      const totalCell = document.createElement('td');
+      totalCell.textContent = '-';
+      row.appendChild(totalCell);
+
+      tableBody.appendChild(row);
+    }
+
+    // Handle article selection change
+    function handleArticleChange(event) {
+      const row = event.target.closest('tr');
+      const selectedRef = event.target.value;
+
+      // Find the selected article details
+      const article = articles.find(article => article.ref === selectedRef);
+
+      if (article) {
+        row.children[1].textContent = article.designation; // Designation
+        row.children[2].textContent = article.unitPrice; // Unit Price
+      } else {
+        row.children[1].textContent = '-';
+        row.children[2].textContent = '-';
+      }
+
+      // Reset quantity and total
+      row.children[3].querySelector('select').value = '';
+      row.children[4].textContent = '-';
+    }
+
+    // Calculate total based on quantity and unit price
+    function calculateTotal(row) {
+      const unitPrice = parseFloat(row.children[2].textContent);
+      const quantity = parseInt(row.children[3].querySelector('select').value);
+
+      if (!isNaN(unitPrice) && !isNaN(quantity)) {
+        row.children[4].textContent = (unitPrice * quantity).toFixed(2);
+      } else {
+        row.children[4].textContent = '-';
+      }
+    }
+
+    // Add event listener to "Add Row" button
+    document.getElementById('addRow').addEventListener('click', createRow);
+
+    // Initialize with one row
+    createRow();
+  </script>
+</body>
+</html>
