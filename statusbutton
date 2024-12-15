@@ -25,28 +25,28 @@
   </style>
 </head>
 <body>
-  <h1>Dynamic Status Workflow</h1>
+  <h1>Button Status</h1>
   <div id="statusContainer">
-    <!-- Rows will be dynamically added -->
+   
   </div>
   <button id="addItem">Add Item</button>
 
   <script>
     const statusContainer = document.getElementById('statusContainer');
 
-    // Function to create a new item with default status "Registered"
+    
     function createItem() {
       const itemDiv = document.createElement('div');
       itemDiv.style.marginBottom = '10px';
 
-      // Status text
+     
       const statusText = document.createElement('span');
       statusText.textContent = 'Registered';
       statusText.style.marginRight = '10px';
       statusText.style.fontWeight = 'bold';
       itemDiv.appendChild(statusText);
 
-      // Action button
+     
       const actionButton = document.createElement('button');
       actionButton.textContent = 'Update';
       actionButton.className = 'button registered';
@@ -56,10 +56,10 @@
       statusContainer.appendChild(itemDiv);
     }
 
-    // Handle button click to update status and button appearance
+    
     function handleButtonClick(statusText, button) {
       if (statusText.textContent === 'Registered') {
-        // Change to "Updated"
+        
         statusText.textContent = 'Updated';
         button.textContent = 'Verify';
         button.className = 'button updated';
@@ -72,10 +72,10 @@
       }
     }
 
-    // Add event listener to the "Add Item" button
+   
     document.getElementById('addItem').addEventListener('click', createItem);
 
-    // Initialize with one item
+   
     createItem();
   </script>
 </body>
